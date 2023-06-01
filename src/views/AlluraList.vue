@@ -3,15 +3,18 @@
     <div class="allura-list">
       <div class="artists">
         <div class="names">
-          ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1
-          ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1
-          ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1
-          ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1
-          ARTISTA 1 ARTISTA 1 ARTISTA 1 ARTISTA 1
+          ARTISTA 1 | ARTISTA 2 | ARTISTA 3 | ARTISTA 4 | ARTISTA 5 | ARTISTA 6
+          | ARTISTA 7 | ARTISTA 8 | ARTISTA 9 | ARTISTA 10 | ARTISTA 11 |
+          ARTISTA 12 | ARTISTA 13 | ARTISTA 14 | ARTISTA 15 | ARTISTA 16 |
+          ARTISTA 17 | ARTISTA 18 | ARTISTA 19 | ARTISTA 20 | ARTISTA 21 |
+          ARTISTA 22 | ARTISTA 23 | ARTISTA 24 | ARTISTA 25 | ARTISTA 26 |
+          ARTISTA 27 | ARTISTA 28 | ARTISTA 29 | ARTISTA 30 | ARTISTA 31 |
+          ARTISTA 32 | ARTISTA 33 |
         </div>
         <div class="link">www.google.com</div>
       </div>
     </div>
+    <a href="#" class="download">Download button</a>
   </div>
 </template>
 
@@ -23,8 +26,10 @@ export default {};
 @import url("https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap");
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
   .allura-list {
     display: flex;
     justify-content: center;
@@ -61,6 +66,18 @@ export default {};
         font-size: 20px;
         color: #fff;
       }
+    }
+  }
+  .download {
+    padding: 8px 16px;
+    background-color: rgba(0, 81, 88, 255);
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: #08838e;
     }
   }
 }
