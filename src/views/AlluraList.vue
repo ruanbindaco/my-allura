@@ -45,7 +45,7 @@ export default {};
       .names {
         display: flex;
         justify-content: center;
-        padding: 135px 45px 0;
+        padding: 30% 45px 0;
         font-family: "Slabo", serif;
         text-align: justify;
         font-size: 20px;
@@ -76,7 +76,6 @@ export default {};
         justify-content: start;
         gap: 20px;
         .names {
-          padding-top: 100px;
           font-size: 16px;
         }
 
@@ -86,6 +85,12 @@ export default {};
         }
       }
     }
+  }
+}
+
+@media (max-width: 400px) {
+  .container .allura-list .artists .names {
+    font-size: 12px;
   }
 }
 </style>
