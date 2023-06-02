@@ -3,13 +3,7 @@
     <div class="allura-list">
       <div class="artists">
         <div class="names">
-          ARTISTA 1 | ARTISTA 2 | ARTISTA 3 | ARTISTA 4 | ARTISTA 5 | ARTISTA 6
-          | ARTISTA 7 | ARTISTA 8 | ARTISTA 9 | ARTISTA 10 | ARTISTA 11 |
-          ARTISTA 12 | ARTISTA 13 | ARTISTA 14 | ARTISTA 15 | ARTISTA 16 |
-          ARTISTA 17 | ARTISTA 18 | ARTISTA 19 | ARTISTA 20 | ARTISTA 21 |
-          ARTISTA 22 | ARTISTA 23 | ARTISTA 24 | ARTISTA 25 | ARTISTA 26 |
-          ARTISTA 27 | ARTISTA 28 | ARTISTA 29 | ARTISTA 30 | ARTISTA 31 |
-          ARTISTA 32 | ARTISTA 33 |
+          <p v-for="artist in artistsUser" :key="artist">{{ artist }}</p>
         </div>
         <div class="link">www.google.com</div>
       </div>
@@ -23,10 +17,12 @@ import axios from 'axios'
 export default {
   data() {
     return {
-
+      accessToken: null,
+      user: {},
+      artistsUser: null
     }
   },
-  mounted() {
+  async mounted() {
     let clientId = 'aa881f98bb814ef09cb60b5e5ee9c87a'
     let clientSecret = '3ff816e1774747a5973d50e8bf62e83b'
     let params = new URLSearchParams(document.location.search)
@@ -38,7 +34,7 @@ export default {
       redirect_uri: 'http://127.0.0.1:5173/my-allura'
     }
 
-    axios({
+    let response = await axios({
       method: 'POST',
       url: 'https://accounts.spotify.com/api/token',
       data: new URLSearchParams(Object.entries(body)).toString(),
@@ -47,6 +43,34 @@ export default {
         "Content-Type": 'application/x-www-form-urlencoded'
       }
     })
+    this.accessToken = response.data.access_token
+
+    let userResponse = await axios({
+      method: 'GET',
+      url: 'https://api.spotify.com/v1/me',
+      headers: {
+        "Content-Type": 'application/json',
+        Authorization: `Bearer ${this.accessToken}`
+      }
+    })
+    this.user = {
+      name: userResponse.data.display_name,
+      id: userResponse.data.id,
+    }
+
+    let artists = await axios({
+      method: 'GET',
+      url: 'https://api.spotify.com/v1/me/top/artists?limit=25',
+      headers: {
+        Authorization: `Bearer ${this.accessToken}`
+      }
+    })
+    let artistsTest = []
+    artists.data.items.map((artist) => {
+      artistsTest.push(artist.name)
+    })
+    this.artistsUser = artistsTest
+    console.log(this.artistsUser)
   }
 };
 </script>
