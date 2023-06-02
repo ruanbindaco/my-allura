@@ -13,65 +13,65 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   data() {
     return {
       accessToken: null,
       user: {},
-      artistsUser: null
-    }
+      artistsUser: null,
+    };
   },
   async mounted() {
-    let clientId = 'aa881f98bb814ef09cb60b5e5ee9c87a'
-    let clientSecret = '3ff816e1774747a5973d50e8bf62e83b'
-    let params = new URLSearchParams(document.location.search)
-    let code = params.get('code')
+    let clientId = "aa881f98bb814ef09cb60b5e5ee9c87a";
+    let clientSecret = "3ff816e1774747a5973d50e8bf62e83b";
+    let params = new URLSearchParams(document.location.search);
+    let code = params.get("code");
 
     let body = {
-      grant_type: 'authorization_code',
+      grant_type: "authorization_code",
       code,
-      redirect_uri: 'http://127.0.0.1:5173/my-allura'
-    }
+      redirect_uri: "http://127.0.0.1:5173/my-allura",
+    };
 
     let response = await axios({
-      method: 'POST',
-      url: 'https://accounts.spotify.com/api/token',
+      method: "POST",
+      url: "https://accounts.spotify.com/api/token",
       data: new URLSearchParams(Object.entries(body)).toString(),
       headers: {
-        Authorization: `Basic ${btoa(clientId + ':' + clientSecret)}`,
-        "Content-Type": 'application/x-www-form-urlencoded'
-      }
-    })
-    this.accessToken = response.data.access_token
+        Authorization: `Basic ${btoa(clientId + ":" + clientSecret)}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+    this.accessToken = response.data.access_token;
 
     let userResponse = await axios({
-      method: 'GET',
-      url: 'https://api.spotify.com/v1/me',
+      method: "GET",
+      url: "https://api.spotify.com/v1/me",
       headers: {
-        "Content-Type": 'application/json',
-        Authorization: `Bearer ${this.accessToken}`
-      }
-    })
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.accessToken}`,
+      },
+    });
     this.user = {
       name: userResponse.data.display_name,
       id: userResponse.data.id,
-    }
+    };
 
     let artists = await axios({
-      method: 'GET',
-      url: 'https://api.spotify.com/v1/me/top/artists?limit=25',
+      method: "GET",
+      url: "https://api.spotify.com/v1/me/top/artists?limit=25",
       headers: {
-        Authorization: `Bearer ${this.accessToken}`
-      }
-    })
-    let artistsTest = []
+        Authorization: `Bearer ${this.accessToken}`,
+      },
+    });
+    let artistsTest = [];
     artists.data.items.map((artist) => {
-      artistsTest.push(artist.name)
-    })
-    this.artistsUser = artistsTest
-    console.log(this.artistsUser)
-  }
+      artistsTest.push(artist.name);
+    });
+    this.artistsUser = artistsTest;
+    console.log(this.artistsUser);
+  },
 };
 </script>
 
@@ -82,21 +82,20 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   .allura-list {
     display: flex;
     justify-content: center;
     align-items: center;
     background-image: url("../assets/images/my-allura.png");
     background-size: cover;
+    background-position: center;
     max-width: 500px;
     width: 100%;
-    height: 500px;
-    transform: scale(0.9);
+    height: 800px;
 
     .artists {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       flex-direction: column;
       height: 100%;
 
@@ -140,10 +139,8 @@ export default {
     .allura-list {
       background-size: contain;
       background-repeat: no-repeat;
-      height: 500px;
 
       .artists {
-        justify-content: start;
         gap: 20px;
         .names {
           font-size: 16px;
