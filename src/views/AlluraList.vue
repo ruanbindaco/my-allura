@@ -19,7 +19,36 @@
 </template>
 
 <script>
-export default {};
+import axios from 'axios'
+export default {
+  data() {
+    return {
+
+    }
+  },
+  mounted() {
+    const clientId = 'aa881f98bb814ef09cb60b5e5ee9c87a'
+    const clientSecret = '3ff816e1774747a5973d50e8bf62e83b'
+    let params = new URLSearchParams(document.location.search)
+    let code  = params.get("code")
+
+    let body = {
+      grant_type: 'authorization_code',
+      code,
+      redirect_uri: 'http://127.0.0.1:5173/my-allura'
+    }
+
+    axios({
+      method: 'POST',
+      url: 'https://accounts.spotify.com/api/token',
+      data: new URLSearchParams(Object.entries(body)).toString(),
+      headers: {
+        Authorization: `Basic ${btoa(clientId + ':' + clientSecret)}`,
+        "Content-Type": 'application/x-www-form-urlencoded'
+      }
+    })
+  }
+};
 </script>
 
 <style lang="scss" scoped>
