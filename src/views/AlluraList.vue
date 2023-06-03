@@ -119,7 +119,6 @@ export default {
         justify-content: center;
         flex-wrap: wrap;
         gap: 3px;
-        font-family: "Slabo", serif;
         text-align: justify;
         font-size: 20px;
         color: #fff;
@@ -134,7 +133,6 @@ export default {
         display: flex;
         justify-content: center;
         padding-bottom: 72px;
-        font-family: "Slabo", serif;
         text-align: justify;
         font-size: 20px;
         color: #fff;
