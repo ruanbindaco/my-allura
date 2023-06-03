@@ -3,12 +3,23 @@
     <div class="allura-list">
       <div class="artists">
         <div class="names">
-          <p v-for="artist in artistsUser" :key="artist">{{ artist }}</p>
+          <div
+            v-if="artistsUser !== null"
+            v-for="artist in artistsUser"
+            class="singer"
+            ref="artists"
+            :key="artist"
+          >
+            <span> {{ artist }} ° </span>
+          </div>
+          <div v-if="artistsUser == null">
+            Parece que você não possui artistas :(
+          </div>
         </div>
         <div class="link">www.google.com</div>
       </div>
     </div>
-    <a href="#" class="download">Download button</a>
+    <div class="download">Download button</div>
   </div>
 </template>
 
@@ -96,17 +107,27 @@ export default {
     .artists {
       display: flex;
       justify-content: center;
+      align-items: center;
+      gap: 30px;
       flex-direction: column;
+      padding-top: 55px;
       height: 100%;
+      width: 100%;
 
       .names {
         display: flex;
         justify-content: center;
-        padding: 30% 45px 0;
+        flex-wrap: wrap;
+        gap: 3px;
         font-family: "Slabo", serif;
         text-align: justify;
         font-size: 20px;
         color: #fff;
+        width: 65%;
+
+        .singer {
+          width: fit-content;
+        }
       }
 
       .link {
@@ -142,6 +163,7 @@ export default {
 
       .artists {
         gap: 20px;
+        padding-top: 30px;
         .names {
           font-size: 16px;
         }
@@ -156,8 +178,11 @@ export default {
 }
 
 @media (max-width: 400px) {
-  .container .allura-list .artists .names {
-    font-size: 12px;
+  .container .allura-list .artists {
+    padding-top: 40px;
+    .names {
+      font-size: 14px;
+    }
   }
 }
 </style>
