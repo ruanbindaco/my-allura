@@ -10,7 +10,7 @@
             ref="artists"
             :key="artist"
           >
-            <span> {{ artist }} ° </span>
+            <span> {{ artist }} | </span>
           </div>
           <div v-if="artistsUser == null">
             Parece que você não possui artistas :(
