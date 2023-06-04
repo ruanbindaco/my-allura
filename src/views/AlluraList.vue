@@ -132,7 +132,6 @@ export default {
       .link {
         display: flex;
         justify-content: center;
-        padding-bottom: 72px;
         text-align: justify;
         font-size: 20px;
         color: #fff;
@@ -167,7 +166,6 @@ export default {
         }
 
         .link {
-          padding-bottom: 30px;
           font-size: 10px;
         }
       }
