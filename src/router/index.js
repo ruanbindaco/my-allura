@@ -10,7 +10,7 @@ const router = createRouter({
       component: Home
     },
     {
-      path: '/my-allura',
+      path: '/callback',
       name: 'list',
       component: AlluraList
     }

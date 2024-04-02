@@ -28,9 +28,9 @@
 export default {
   data() {
     return {
-      clientId: "aa881f98bb814ef09cb60b5e5ee9c87a",
+      clientId: "8f9ffdab050c4b2cb399ceda2a725638",
       scope: "user-top-read",
-      redirectUrl: "http://127.0.0.1:5173/my-allura",
+      redirectUrl: "http://localhost:5173/callback",
     };
   },
   methods: {

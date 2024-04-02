@@ -34,15 +34,15 @@ export default {
     };
   },
   async mounted() {
-    let clientId = "aa881f98bb814ef09cb60b5e5ee9c87a";
-    let clientSecret = "3ff816e1774747a5973d50e8bf62e83b";
+    let clientId = "8f9ffdab050c4b2cb399ceda2a725638";
+    let clientSecret = "6ba5805874214c0b924939a0a34cd956";
     let params = new URLSearchParams(document.location.search);
     let code = params.get("code");
 
     let body = {
       grant_type: "authorization_code",
       code,
-      redirect_uri: "http://127.0.0.1:5173/my-allura",
+      redirect_uri: "http://localhost:5173/callback",
     };
 
     let response = await axios({
